@@ -1,14 +1,14 @@
 {
-    "Group": "Example",
-    "Name": "ExamplePlugin",
+    "Group": "HypeForge",
+    "Name": "HypeForge",
     "Version": "0.0.2",
-    "Description": "An example plugin for HyTale!",
+    "Description": "A dnd plugin for hytale",
     "Authors": [
         {
-            "Name": "It's you!"
+            "Name": "Croyke"
         }
     ],
-    "Website": "example.org",
+    "Website": "https://www.trifox.nl/project/hypeforge",
     "ServerVersion": "*",
     "Dependencies": {
         
@@ -17,6 +17,6 @@
         
     },
     "DisabledByDefault": false,
-    "Main": "nl.calvindavidson.mythforge.MythForge",
+    "Main": "nl.trifox.mythforge.MythForge",
     "IncludesAssetPack": true
 }

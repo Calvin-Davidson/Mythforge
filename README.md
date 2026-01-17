@@ -1,6 +1,6 @@
 # 🎲 MythForge
 
-**MythForge** is a lightweight Hytale plugin that brings **tabletop RPG dice rolling** into your server. Perfect for Dungeons & Dragons style campaigns, it allows players and DMs to roll dice in-game with standard RPG notation. Future updates will include DM-only rolls and more campaign tools.
+**MythForge** is a lightweight Hytale plugin that brings **tabletop RPG dice rolling** into your server. Perfect for Dungeons & Dragons style campaigns, it allows players and DMs to roll dice in-game with standard RPG notation. Future updates will include campaign tools.
 
 ---
 
@@ -12,8 +12,8 @@
 - ⚖️ **Advantage / Disadvantage Support**  
   Roll with advantage (`adv`) or disadvantage (`dis`) directly in-game.
 
-- 🛡 **Planned DM Tools**  
-  Future updates will add rolls only visible to DMs and other campaign management features.
+- 🛡 **DM Tools**  
+  DM only rolls
 
 ---
 
@@ -27,13 +27,14 @@
 
 ---
 
-## 🛠 Installation
+## Permissions
 
-1. Download `MythForge.jar`.
-2. Place the `.jar` file in your Hytale server's `plugins` folder.
-3. Start or restart your server.
-4. Use `/roll` to start rolling dice in-game.
 
+| Permission      | Description                                               |
+|-----------------|-----------------------------------------------------------|
+| `MythForge.Core.DiceRoll`    | Allows for rolling the dice.                              |
+| `MythForge.DM` | Base permission for DM commands, need for all DM commands |
+| `MythForge.DM.Diceroll` | Permission for rolling DM dices                           |
 
 ## 🎨 About
 

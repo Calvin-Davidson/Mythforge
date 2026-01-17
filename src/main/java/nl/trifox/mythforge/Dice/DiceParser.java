@@ -1,4 +1,4 @@
-package nl.calvindavidson.mythforge.Dice;
+package nl.trifox.mythforge.Dice;
 
 import java.util.Random;
 import java.util.regex.Matcher;
@@ -37,7 +37,7 @@ public class DiceParser {
             rolls = new int[]{first, second};
             int total = advDis.equals("adv") ? Math.max(first, second) + modifier
                     : Math.min(first, second) + modifier;
-            return new DiceResult(total, rolls, modifier);
+            return new DiceResult(total, rolls, modifier, expression);
 
         } else {
             rolls = new int[count];
@@ -56,7 +56,7 @@ public class DiceParser {
             }
 
             int total = Arrays.stream(pickedRolls).sum() + modifier;
-            return new DiceResult(total, pickedRolls, modifier);
+            return new DiceResult(total, pickedRolls, modifier, expression);
         }
     }
 

@@ -1,4 +1,4 @@
-package nl.calvindavidson.mythforge.Dice;
+package nl.trifox.mythforge.Dice;
 
 import org.junit.jupiter.api.Test;
 

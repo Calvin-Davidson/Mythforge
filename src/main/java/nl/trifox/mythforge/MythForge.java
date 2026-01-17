@@ -1,11 +1,13 @@
-package nl.calvindavidson.mythforge;
+package nl.trifox.mythforge;
 
 import com.hypixel.hytale.logger.HytaleLogger;
 import com.hypixel.hytale.server.core.plugin.JavaPlugin;
 import com.hypixel.hytale.server.core.plugin.JavaPluginInit;
-import nl.calvindavidson.mythforge.Commands.DMCommands;
-import nl.calvindavidson.mythforge.Commands.Dice.RollCommand;
-import nl.calvindavidson.mythforge.Utils.Permissions;
+import com.hypixel.hytale.server.core.util.Config;
+import nl.trifox.mythforge.Commands.DMCommands;
+import nl.trifox.mythforge.Commands.Dice.RollCommand;
+import nl.trifox.mythforge.Configs.TextConfig;
+import nl.trifox.mythforge.Utils.Permissions;
 
 import javax.annotation.Nonnull;
 
@@ -16,17 +18,20 @@ import javax.annotation.Nonnull;
 public class MythForge extends JavaPlugin {
 
     private static final HytaleLogger LOGGER = HytaleLogger.forEnclosingClass();
+    public final Config<TextConfig> TextConfig;
 
     public MythForge(@Nonnull JavaPluginInit init) {
         super(init);
+
+        this.TextConfig = this.withConfig("Text", nl.trifox.mythforge.Configs.TextConfig.CODEC);
     }
 
     @Override
     protected void setup() {
         LOGGER.atInfo().log( "Setting up plugin " + this.getName());
 
-        this.getCommandRegistry().registerCommand(new RollCommand(false, Permissions.DiceRoll));
-        this.getCommandRegistry().registerCommand(new DMCommands());
+        this.getCommandRegistry().registerCommand(new RollCommand(this, false, Permissions.DiceRoll));
+        this.getCommandRegistry().registerCommand(new DMCommands(this));
 
         LOGGER.atInfo().log( "Setup completed for " + this.getName());
 
