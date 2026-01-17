@@ -3,7 +3,9 @@ package nl.calvindavidson.mythforge;
 import com.hypixel.hytale.logger.HytaleLogger;
 import com.hypixel.hytale.server.core.plugin.JavaPlugin;
 import com.hypixel.hytale.server.core.plugin.JavaPluginInit;
-import nl.calvindavidson.mythforge.Commands.DiceCommand;
+import nl.calvindavidson.mythforge.Commands.DMCommands;
+import nl.calvindavidson.mythforge.Commands.Dice.RollCommand;
+import nl.calvindavidson.mythforge.Utils.Permissions;
 
 import javax.annotation.Nonnull;
 
@@ -17,12 +19,16 @@ public class MythForge extends JavaPlugin {
 
     public MythForge(@Nonnull JavaPluginInit init) {
         super(init);
-        LOGGER.atInfo().log("Hello from " + this.getName() + " version " + this.getManifest().getVersion().toString());
     }
 
     @Override
     protected void setup() {
         LOGGER.atInfo().log( "Setting up plugin " + this.getName());
-        this.getCommandRegistry().registerCommand(new DiceCommand());
+
+        this.getCommandRegistry().registerCommand(new RollCommand(false, Permissions.DiceRoll));
+        this.getCommandRegistry().registerCommand(new DMCommands());
+
+        LOGGER.atInfo().log( "Setup completed for " + this.getName());
+
     }
 }
