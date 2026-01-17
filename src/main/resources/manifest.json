@@ -1,14 +1,14 @@
 {
-    "Group": "HypeForge",
-    "Name": "HypeForge",
+    "Group": "MythForge",
+    "Name": "MythForge",
     "Version": "0.0.2",
-    "Description": "A dnd plugin for hytale",
+    "Description": "A e5 inspired tabletop plugin for hytale",
     "Authors": [
         {
             "Name": "Croyke"
         }
     ],
-    "Website": "https://www.trifox.nl/project/hypeforge",
+    "Website": "https://www.trifox.nl/project/MythForge",
     "ServerVersion": "*",
     "Dependencies": {
         
