@@ -15,8 +15,7 @@ public class DMCommands extends CommandBase  {
         super("DM", "All commands the DM might execute");
 
         this.addSubCommand(new RollCommand(true, Permissions.DMDiceRoll));
-
-
+        this.requirePermission(Permissions.DM);
     }
 
     @Override

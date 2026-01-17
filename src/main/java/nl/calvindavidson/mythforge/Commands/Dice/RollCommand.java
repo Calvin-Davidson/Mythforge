@@ -34,7 +34,7 @@ public class RollCommand extends CommandBase {
         if (sender instanceof Player player) {
             if (this.IsForDM) {
                 sender.sendMessage(Message.raw(
-                        "You rolled " + ctx.get(Roll) + " → " +
+                        "You DM rolled " + ctx.get(Roll) + " → " +
                                 Arrays.toString(parseResult.rolls()) +
                                 " (Total: " + parseResult.total() + ")"
                 ));
