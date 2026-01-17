@@ -3,6 +3,7 @@ package nl.calvindavidson.mythforge;
 import com.hypixel.hytale.logger.HytaleLogger;
 import com.hypixel.hytale.server.core.plugin.JavaPlugin;
 import com.hypixel.hytale.server.core.plugin.JavaPluginInit;
+import nl.calvindavidson.mythforge.Commands.DiceCommand;
 
 import javax.annotation.Nonnull;
 
