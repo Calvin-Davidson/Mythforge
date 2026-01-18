@@ -8,6 +8,7 @@ import com.hypixel.hytale.server.core.command.system.basecommands.CommandBase;
 import com.hypixel.hytale.server.core.entity.entities.Player;
 import nl.trifox.mythforge.Characters.CharacterData;
 import nl.trifox.mythforge.Characters.PlayerCharacterService;
+import nl.trifox.mythforge.MythForge;
 import org.checkerframework.checker.nullness.compatqual.NonNullDecl;
 
 public class CreateCharacterCommand extends CommandBase {
@@ -15,7 +16,7 @@ public class CreateCharacterCommand extends CommandBase {
 
     private final RequiredArg<String> CharacterName;
 
-    public CreateCharacterCommand(@NonNullDecl String name, @NonNullDecl String description, PlayerCharacterService playerCharacterService) {
+    public CreateCharacterCommand(@NonNullDecl String name, @NonNullDecl String description, MythForge mythForge, PlayerCharacterService playerCharacterService) {
         super(name, description);
         PlayerCharacterService = playerCharacterService;
         this.CharacterName = withRequiredArg("CharacterName", "the name of the character", ArgTypes.STRING);
@@ -36,7 +37,7 @@ public class CreateCharacterCommand extends CommandBase {
             var currentActive = PlayerCharacterService.getActivePlayerCharacter(sender.getUuid());
 
             var characterData = new CharacterData(sender.getUuid(), CharacterName.get(commandContext));
-            characterData.SetIsActive(currentActive == null);
+            characterData.setIsActive(currentActive == null);
             PlayerCharacterService.saveCharacter(characterData);
 
             if (currentActive == null) {

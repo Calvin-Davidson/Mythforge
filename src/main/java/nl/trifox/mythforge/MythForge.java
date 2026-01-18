@@ -38,7 +38,7 @@ public class MythForge extends JavaPlugin {
 
         this.getCommandRegistry().registerCommand(new RollCommand(this, false, Permissions.DiceRoll));
         this.getCommandRegistry().registerCommand(new DMCommands(this));
-        this.getCommandRegistry().registerCommand(new CharacterCommand(this.CharacterService));
+        this.getCommandRegistry().registerCommand(new CharacterCommand(this, this.CharacterService));
 
         LOGGER.atInfo().log( "Setup completed for " + this.getName());
 

@@ -24,6 +24,10 @@ public class TextConfig {
                             (textConfig, s, extraINfo) -> textConfig.DiceRollSelfText = s,
                             (textConfig, extraInfo) -> textConfig.DiceRollSelfText)
                     .add()
+                    .append(new KeyedCodec<String>("CharacterInfoSheet", Codec.STRING),
+                            (textConfig, s, extraINfo) -> textConfig.CharacterInfoSheet = s,
+                            (textConfig, extraInfo) -> textConfig.CharacterInfoSheet)
+                    .add()
                     .build();
 
     public String DMDiceRollText =
@@ -49,6 +53,8 @@ public class TextConfig {
                     TextConfig.DicesMacro,
                     TextConfig.DiceTotalMacro
             );
+
+    public String CharacterInfoSheet = "----- %name% -----\nlevel: %level%\nclass: %class%\nrace: %race%\n----------------";
 
     public TextConfig() {
 

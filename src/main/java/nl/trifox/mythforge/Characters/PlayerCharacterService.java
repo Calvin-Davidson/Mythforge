@@ -17,7 +17,7 @@ public class PlayerCharacterService {
 
     private void loadAllActive() {
         for (CharacterData data : storage.loadAllActive()) {
-            activeCharacterCache.put(data.GetUuid(), data);
+            activeCharacterCache.put(data.getUuid(), data);
         }
     }
 
@@ -30,11 +30,11 @@ public class PlayerCharacterService {
     }
 
     public List<CharacterData> getCharacters(UUID uuid) {
-        return storage.loadAll().stream().filter(characterData -> characterData.GetUuid().equals(uuid)).toList();
+        return storage.loadAll().stream().filter(characterData -> characterData.getUuid().equals(uuid)).toList();
     }
 
     public void saveCharacter(CharacterData data) {
-        activeCharacterCache.put(data.GetUuid(), data);
+        activeCharacterCache.put(data.getUuid(), data);
         storage.save(data);
     }
 
@@ -48,8 +48,8 @@ public class PlayerCharacterService {
         var activeCharacter = getActivePlayerCharacter(uuid);
         var character = getCharacter(uuid, name);
 
-        activeCharacter.SetIsActive(false);
-        character.SetIsActive(true);
+        activeCharacter.setIsActive(false);
+        character.setIsActive(true);
         storage.save(activeCharacter);
         storage.save(character);
 
@@ -58,8 +58,8 @@ public class PlayerCharacterService {
     }
 
     public boolean delete(CharacterData character) {
-        if (character.GetIsActive()) {
-            activeCharacterCache.remove(character.GetUuid());
+        if (character.getIsActive()) {
+            activeCharacterCache.remove(character.getUuid());
         }
         return storage.delete(character);
     }

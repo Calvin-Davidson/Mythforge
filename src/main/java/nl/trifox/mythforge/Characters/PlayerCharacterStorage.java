@@ -1,7 +1,6 @@
 package nl.trifox.mythforge.Characters;
 
 import com.google.gson.Gson;
-import nl.trifox.mythforge.MythForge;
 
 import java.io.*;
 import java.util.*;
@@ -30,12 +29,12 @@ public class PlayerCharacterStorage implements IPlayerStorage {
 
     @Override
     public CharacterData loadActive(UUID uuid) {
-        return loadAllActive().stream().filter(characterData -> characterData.GetUuid().equals(uuid)).findFirst().orElseGet(() -> null);
+        return loadAllActive().stream().filter(characterData -> characterData.getUuid().equals(uuid)).findFirst().orElseGet(() -> null);
     }
 
     @Override
     public void save(CharacterData data) {
-        File file = new File(dataFolder, data.GetUuid().toString() + data.GetName() + ".json");
+        File file = new File(dataFolder, data.getUuid().toString() + data.getName() + ".json");
 
         try (FileWriter writer = new FileWriter(file)) {
             new Gson().toJson(data, writer);
@@ -65,11 +64,11 @@ public class PlayerCharacterStorage implements IPlayerStorage {
     @Override
     public List<CharacterData> loadAllActive() {
         var all = loadAll();
-        return all.stream().filter(CharacterData::GetIsActive).toList();
+        return all.stream().filter(CharacterData::getIsActive).toList();
     }
 
     @Override
     public boolean delete(CharacterData data) {
-        return Arrays.stream(Objects.requireNonNull(dataFolder.listFiles((dir, name) -> name.equals(data.GetUuid().toString() + data.GetName() + ".json")))).findFirst().orElseThrow().delete();
+        return Arrays.stream(Objects.requireNonNull(dataFolder.listFiles((dir, name) -> name.equals(data.getUuid().toString() + data.getName() + ".json")))).findFirst().orElseThrow().delete();
     }
 }

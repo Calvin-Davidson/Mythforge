@@ -6,15 +6,15 @@ import com.hypixel.hytale.server.core.command.system.arguments.system.RequiredAr
 import com.hypixel.hytale.server.core.command.system.arguments.types.ArgTypes;
 import com.hypixel.hytale.server.core.command.system.basecommands.CommandBase;
 import com.hypixel.hytale.server.core.entity.entities.Player;
-import nl.trifox.mythforge.Characters.CharacterData;
 import nl.trifox.mythforge.Characters.PlayerCharacterService;
+import nl.trifox.mythforge.MythForge;
 import org.checkerframework.checker.nullness.compatqual.NonNullDecl;
 
 public class DeleteCharacterCommand extends CommandBase {
     private final PlayerCharacterService PlayerCharacterService;
     private final RequiredArg<String> CharacterName;
 
-    public DeleteCharacterCommand(@NonNullDecl String name, @NonNullDecl String description, PlayerCharacterService playerCharacterService) {
+    public DeleteCharacterCommand(@NonNullDecl String name, @NonNullDecl String description, MythForge mythForge, PlayerCharacterService playerCharacterService) {
         super(name, description);
         PlayerCharacterService = playerCharacterService;
         this.CharacterName = withRequiredArg("CharacterName", "the name of this character", ArgTypes.STRING);
