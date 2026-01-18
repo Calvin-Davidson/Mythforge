@@ -27,7 +27,7 @@ jobs:
           java-version: "21"
 
       - name: Set up Gradle
-        uses: gradle/actions/setup-gradle@v3 :contentReference[oaicite:2]{index=2}
+        uses: gradle/actions/setup-gradle@v3
 
       - name: Bump version in gradle.properties
         id: bump
