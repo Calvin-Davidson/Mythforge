@@ -1,20 +1,40 @@
 package nl.trifox.mythforge.Commands.Character;
 
+import com.hypixel.hytale.server.core.Message;
 import com.hypixel.hytale.server.core.command.system.CommandContext;
+import com.hypixel.hytale.server.core.command.system.arguments.system.OptionalArg;
+import com.hypixel.hytale.server.core.command.system.arguments.types.ArgTypes;
 import com.hypixel.hytale.server.core.command.system.basecommands.CommandBase;
+import com.hypixel.hytale.server.core.entity.entities.Player;
+import nl.trifox.mythforge.Characters.CharacterData;
 import nl.trifox.mythforge.Characters.PlayerCharacterService;
 import org.checkerframework.checker.nullness.compatqual.NonNullDecl;
 
 public class CharacterInfoCommand extends CommandBase {
     private final PlayerCharacterService PlayerCharacterService;
+    private final OptionalArg<String> CharacterName;
 
     public CharacterInfoCommand(@NonNullDecl String name, @NonNullDecl String description, PlayerCharacterService playerCharacterService) {
         super(name, description);
         PlayerCharacterService = playerCharacterService;
+        this.CharacterName = this.withOptionalArg("Character name", "if you want details about a specific character, defaults to the active character", ArgTypes.STRING);
     }
 
-    @Override
-    protected void executeSync(@NonNullDecl CommandContext commandContext) {
 
+
+    protected void executeSync(@NonNullDecl CommandContext commandContext) {
+        var sender = commandContext.sender();
+
+        if (sender instanceof Player) {
+            var character = CharacterName.provided(commandContext) ?
+                    PlayerCharacterService.getCharacter(sender.getUuid(), CharacterName.get(commandContext)) :
+                    PlayerCharacterService.getActivePlayerCharacter(sender.getUuid());
+
+            if (character == null) {
+                sender.sendMessage(Message.raw("You have no active character, or this character does not exist"));
+            } else {
+                sender.sendMessage(Message.raw(character.GetName()));
+            }
+        }
     }
 }

@@ -1,10 +1,10 @@
 package nl.trifox.mythforge.Characters;
 
 import com.google.gson.Gson;
+import nl.trifox.mythforge.MythForge;
+
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 public class PlayerCharacterStorage implements IPlayerStorage {
 
@@ -14,7 +14,6 @@ public class PlayerCharacterStorage implements IPlayerStorage {
         this.dataFolder = dataFolder;
         var _ = this.dataFolder.mkdirs();
     }
-
 
     @Override
     public CharacterData load(UUID uuid, String characterName) {
@@ -27,6 +26,11 @@ public class PlayerCharacterStorage implements IPlayerStorage {
             e.printStackTrace();
             return null;
         }
+    }
+
+    @Override
+    public CharacterData loadActive(UUID uuid) {
+        return loadAllActive().stream().filter(characterData -> characterData.GetUuid() == uuid).findFirst().orElseGet(() -> null);
     }
 
     @Override
@@ -56,5 +60,16 @@ public class PlayerCharacterStorage implements IPlayerStorage {
         }
 
         return players;
+    }
+
+    @Override
+    public List<CharacterData> loadAllActive() {
+        var all = loadAll();
+        return all.stream().filter(CharacterData::GetIsActive).toList();
+    }
+
+    @Override
+    public boolean delete(CharacterData data) {
+        return Arrays.stream(Objects.requireNonNull(dataFolder.listFiles((dir, name) -> name.equals(data.GetUuid().toString() + data.GetName() + ".json")))).findFirst().orElseThrow().delete();
     }
 }
