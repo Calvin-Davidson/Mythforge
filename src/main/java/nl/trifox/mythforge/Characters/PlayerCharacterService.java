@@ -30,7 +30,7 @@ public class PlayerCharacterService {
     }
 
     public List<CharacterData> getCharacters(UUID uuid) {
-        return storage.loadAll().stream().filter(characterData -> characterData.GetUuid() == uuid).toList();
+        return storage.loadAll().stream().filter(characterData -> characterData.GetUuid().equals(uuid)).toList();
     }
 
     public void saveCharacter(CharacterData data) {
@@ -53,10 +53,14 @@ public class PlayerCharacterService {
         storage.save(activeCharacter);
         storage.save(character);
 
+        activeCharacterCache.put(uuid, character);
         return character;
     }
 
     public boolean delete(CharacterData character) {
+        if (character.GetIsActive()) {
+            activeCharacterCache.remove(character.GetUuid());
+        }
         return storage.delete(character);
     }
 }

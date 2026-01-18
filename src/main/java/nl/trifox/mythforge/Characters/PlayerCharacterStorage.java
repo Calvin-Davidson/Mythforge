@@ -30,7 +30,7 @@ public class PlayerCharacterStorage implements IPlayerStorage {
 
     @Override
     public CharacterData loadActive(UUID uuid) {
-        return loadAllActive().stream().filter(characterData -> characterData.GetUuid() == uuid).findFirst().orElseGet(() -> null);
+        return loadAllActive().stream().filter(characterData -> characterData.GetUuid().equals(uuid)).findFirst().orElseGet(() -> null);
     }
 
     @Override

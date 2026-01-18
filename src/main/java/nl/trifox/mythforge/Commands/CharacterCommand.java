@@ -8,8 +8,8 @@ import org.checkerframework.checker.nullness.compatqual.NonNullDecl;
 
 public class CharacterCommand extends CommandBase {
 
-    public CharacterCommand(@NonNullDecl String name, @NonNullDecl String description, PlayerCharacterService playerCharacterService) {
-        super(name, description);
+    public CharacterCommand(PlayerCharacterService playerCharacterService) {
+        super("character", "manage your characters");
 
         addSubCommand(new ChangeCharacterCommand("Change", "Changes the current character", playerCharacterService));
         addSubCommand(new CharacterInfoCommand("info", "get's information about your current character", playerCharacterService));
@@ -20,6 +20,5 @@ public class CharacterCommand extends CommandBase {
 
     @Override
     protected void executeSync(@NonNullDecl CommandContext commandContext) {
-
     }
 }
