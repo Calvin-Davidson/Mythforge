@@ -6,7 +6,10 @@ import com.hypixel.hytale.server.core.command.system.arguments.system.OptionalAr
 import com.hypixel.hytale.server.core.command.system.arguments.types.ArgTypes;
 import com.hypixel.hytale.server.core.command.system.basecommands.CommandBase;
 import com.hypixel.hytale.server.core.entity.entities.Player;
+import nl.trifox.mythforge.Characters.CharacterMessageFormatter;
 import nl.trifox.mythforge.Characters.PlayerCharacterService;
+import nl.trifox.mythforge.Consts.Macro;
+import nl.trifox.mythforge.Consts.MessageID;
 import nl.trifox.mythforge.MythForge;
 import org.checkerframework.checker.nullness.compatqual.NonNullDecl;
 
@@ -33,16 +36,10 @@ public class CharacterInfoCommand extends CommandBase {
                     PlayerCharacterService.getActivePlayerCharacter(sender.getUuid());
 
             if (character == null) {
-                sender.sendMessage(Message.raw("You have no active character, or this character does not exist"));
+                sender.sendMessage(Message.translation(MessageID.NoActiveCharacterOrDoesNotExist));
             } else {
-                var characterClass = character.getCharacterClass() != null ? character.getCharacterClass() : "Unknown";
-                var characterRace = character.getRace() != null ? character.getRace() : "Unknown";
-
-                sender.sendMessage(Message.raw(mythForge.TextConfig.get().CharacterInfoSheet
-                        .replace("%class%", characterClass )
-                        .replace("%race%", characterRace)
-                        .replace("%level%", String.valueOf(character.getLevel())).
-                        replace("%name%", character.getName())));
+                var message = CharacterMessageFormatter.Format(Message.translation(MessageID.CharacterInfoSheet), character);
+                sender.sendMessage(Message.raw(message.getAnsiMessage()));
             }
         }
     }

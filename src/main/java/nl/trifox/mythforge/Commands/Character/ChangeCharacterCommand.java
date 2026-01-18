@@ -6,7 +6,9 @@ import com.hypixel.hytale.server.core.command.system.arguments.system.RequiredAr
 import com.hypixel.hytale.server.core.command.system.arguments.types.ArgTypes;
 import com.hypixel.hytale.server.core.command.system.basecommands.CommandBase;
 import com.hypixel.hytale.server.core.entity.entities.Player;
+import nl.trifox.mythforge.Characters.CharacterMessageFormatter;
 import nl.trifox.mythforge.Characters.PlayerCharacterService;
+import nl.trifox.mythforge.Consts.MessageID;
 import nl.trifox.mythforge.MythForge;
 import org.checkerframework.checker.nullness.compatqual.NonNullDecl;
 
@@ -29,10 +31,11 @@ public class ChangeCharacterCommand extends CommandBase {
             var character = PlayerCharacterService.getCharacter(sender.getUuid(), CharacterName.get(commandContext));
 
             if (character == null) {
-                sender.sendMessage(Message.raw("This character does not exist"));
+                sender.sendMessage(Message.translation(MessageID.CharacterDoesNotExists));
             } else {
                 var activatedCharacter = PlayerCharacterService.setActive(sender.getUuid(), CharacterName.get(commandContext));
-                sender.sendMessage(Message.raw(activatedCharacter.getName() + " is now active"));
+                var message = CharacterMessageFormatter.Format(Message.translation(MessageID.ChangedToCharacter), activatedCharacter);
+                sender.sendMessage(Message.raw(message.getAnsiMessage()));
             }
         }
     }

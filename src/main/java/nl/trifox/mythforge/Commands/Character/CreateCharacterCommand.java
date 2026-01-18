@@ -7,7 +7,9 @@ import com.hypixel.hytale.server.core.command.system.arguments.types.ArgTypes;
 import com.hypixel.hytale.server.core.command.system.basecommands.CommandBase;
 import com.hypixel.hytale.server.core.entity.entities.Player;
 import nl.trifox.mythforge.Characters.CharacterData;
+import nl.trifox.mythforge.Characters.CharacterMessageFormatter;
 import nl.trifox.mythforge.Characters.PlayerCharacterService;
+import nl.trifox.mythforge.Consts.MessageID;
 import nl.trifox.mythforge.MythForge;
 import org.checkerframework.checker.nullness.compatqual.NonNullDecl;
 
@@ -30,21 +32,16 @@ public class CreateCharacterCommand extends CommandBase {
             var character = PlayerCharacterService.getCharacter(sender.getUuid(), CharacterName.get(commandContext));
 
             if (character != null) {
-                sender.sendMessage(Message.raw("This character already exists"));
+                var message = CharacterMessageFormatter.Format(Message.translation(MessageID.CharacterAlreadyExists), character);
+                sender.sendMessage(Message.raw(message.getAnsiMessage()));
                 return;
             }
 
-            var currentActive = PlayerCharacterService.getActivePlayerCharacter(sender.getUuid());
-
             var characterData = new CharacterData(sender.getUuid(), CharacterName.get(commandContext));
-            characterData.setIsActive(currentActive == null);
             PlayerCharacterService.saveCharacter(characterData);
 
-            if (currentActive == null) {
-                sender.sendMessage(Message.raw("Character created, and you swapped to him"));
-            } else {
-                sender.sendMessage(Message.raw("Character created, to change to it use /character change"));
-            }
+            var message = CharacterMessageFormatter.Format(Message.translation(MessageID.CharacterCreated), characterData);
+            sender.sendMessage(Message.raw(message.getAnsiMessage()));
         }
     }
 }

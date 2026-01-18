@@ -1,6 +1,8 @@
 package nl.trifox.mythforge;
 
 import com.hypixel.hytale.logger.HytaleLogger;
+import com.hypixel.hytale.server.core.asset.HytaleAssetStore;
+import com.hypixel.hytale.server.core.modules.i18n.I18nModule;
 import com.hypixel.hytale.server.core.plugin.JavaPlugin;
 import com.hypixel.hytale.server.core.plugin.JavaPluginInit;
 import com.hypixel.hytale.server.core.util.Config;
@@ -22,14 +24,12 @@ import java.io.File;
 public class MythForge extends JavaPlugin {
 
     private static final HytaleLogger LOGGER = HytaleLogger.forEnclosingClass();
-    public final Config<TextConfig> TextConfig;
     public final PlayerCharacterService CharacterService;
 
     public MythForge(@Nonnull JavaPluginInit init) {
         super(init);
 
         this.CharacterService = new PlayerCharacterService(new PlayerCharacterStorage(init.getDataDirectory().resolve("characters").toFile()));
-        this.TextConfig = this.withConfig("Text", nl.trifox.mythforge.Configs.TextConfig.CODEC);
     }
 
     @Override

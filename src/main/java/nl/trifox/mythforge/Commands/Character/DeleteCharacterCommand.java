@@ -6,7 +6,9 @@ import com.hypixel.hytale.server.core.command.system.arguments.system.RequiredAr
 import com.hypixel.hytale.server.core.command.system.arguments.types.ArgTypes;
 import com.hypixel.hytale.server.core.command.system.basecommands.CommandBase;
 import com.hypixel.hytale.server.core.entity.entities.Player;
+import nl.trifox.mythforge.Characters.CharacterMessageFormatter;
 import nl.trifox.mythforge.Characters.PlayerCharacterService;
+import nl.trifox.mythforge.Consts.MessageID;
 import nl.trifox.mythforge.MythForge;
 import org.checkerframework.checker.nullness.compatqual.NonNullDecl;
 
@@ -28,16 +30,17 @@ public class DeleteCharacterCommand extends CommandBase {
             var character = PlayerCharacterService.getCharacter(sender.getUuid(), CharacterName.get(commandContext));
 
             if (character == null) {
-                sender.sendMessage(Message.raw("This character does not exists"));
+                sender.sendMessage(Message.translation(MessageID.CharacterDoesNotExists));
                 return;
             }
 
             boolean isDeleted = PlayerCharacterService.delete(character);
 
             if (isDeleted) {
-                sender.sendMessage(Message.raw("Character deleted"));
+                var message = CharacterMessageFormatter.Format(Message.translation(MessageID.CharacterDeleted), character);
+                sender.sendMessage(Message.raw(message.getAnsiMessage()));
             } else {
-                sender.sendMessage(Message.raw("Something went wrong deleting this character"));
+                sender.sendMessage(Message.translation(MessageID.GenericSomethingWentWrong));
             }
         }
     }

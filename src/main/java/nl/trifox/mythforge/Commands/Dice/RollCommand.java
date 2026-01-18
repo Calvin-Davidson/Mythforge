@@ -7,6 +7,7 @@ import com.hypixel.hytale.server.core.command.system.arguments.system.RequiredAr
 import com.hypixel.hytale.server.core.command.system.arguments.types.ArgTypes;
 import com.hypixel.hytale.server.core.command.system.basecommands.CommandBase;
 import com.hypixel.hytale.server.core.entity.entities.Player;
+import nl.trifox.mythforge.Consts.MessageID;
 import nl.trifox.mythforge.Dice.DiceParser;
 import nl.trifox.mythforge.Dice.DiceResultFormatter;
 import nl.trifox.mythforge.MythForge;
@@ -36,19 +37,15 @@ public class RollCommand extends CommandBase {
 
         if (sender instanceof Player player) {
             if (this.IsForDM) {
-                var text = DiceResultFormatter.Format(MythForge.TextConfig.get().DMDiceRollText, parseResult);
-                sender.sendMessage(Message.raw(text));
+                sender.sendMessage(DiceResultFormatter.Format(Message.translation(MessageID.DMDiceRollText), parseResult));
             } else {
                 var players = player.getReference().getStore().getExternalData().getWorld().getPlayerRefs();
 
-                var textSelf = DiceResultFormatter.Format(MythForge.TextConfig.get().DiceRollSelfText, parseResult);
-                var textOthers  = DiceResultFormatter.Format(MythForge.TextConfig.get().DiceRollOthersText, parseResult);
-
                 players.forEach(playerRef -> {
                     if (Objects.requireNonNull(playerRef.getReference()).equals(player.getReference())) {
-                        playerRef.sendMessage(Message.raw(textSelf));
+                        playerRef.sendMessage(DiceResultFormatter.Format(Message.translation(MessageID.DiceRollSelfText), parseResult));
                     } else {
-                        playerRef.sendMessage(Message.raw(textOthers));
+                        playerRef.sendMessage(DiceResultFormatter.Format(Message.translation(MessageID.DiceRollOthersText), parseResult));
                     }
                 });
 
