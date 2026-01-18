@@ -1,0 +1,99 @@
+name: Version bump + Release
+
+on:
+  push:
+    branches: [ "main" ]
+
+permissions:
+  contents: write  # needed to push commits/tags + create releases :contentReference[oaicite:1]{index=1}
+
+jobs:
+  bump_tag_release:
+    runs-on: ubuntu-latest
+
+    # Prevent infinite loop when the workflow commits the bump
+    if: github.actor != 'github-actions[bot]'
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v3 :contentReference[oaicite:2]{index=2}
+
+      - name: Bump version in gradle.properties
+        id: bump
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          FILE="gradle.properties"
+          KEY="pluginVersion"
+
+          if ! grep -qE "^${KEY}=" "$FILE"; then
+            echo "Missing ${KEY}= in ${FILE}"
+            exit 1
+          fi
+
+          CURRENT="$(grep -E "^${KEY}=" "$FILE" | head -n1 | cut -d= -f2 | tr -d '[:space:]')"
+
+          # Decide bump type:
+          # - if last commit message contains "#major" => major
+          # - contains "#minor" => minor
+          # - otherwise => patch
+          MSG="$(git log -1 --pretty=%B)"
+          BUMP="patch"
+          if echo "$MSG" | grep -qi "#major"; then BUMP="major"; fi
+          if echo "$MSG" | grep -qi "#minor"; then BUMP="minor"; fi
+
+          IFS='.' read -r MA MI PA <<< "$CURRENT"
+          MA="${MA:-0}"; MI="${MI:-0}"; PA="${PA:-0}"
+
+          case "$BUMP" in
+            major) MA=$((MA+1)); MI=0; PA=0 ;;
+            minor) MI=$((MI+1)); PA=0 ;;
+            patch) PA=$((PA+1)) ;;
+          esac
+
+          NEXT="${MA}.${MI}.${PA}"
+          echo "Bumping $CURRENT -> $NEXT ($BUMP)"
+
+          # update in-place
+          sed -i "s/^${KEY}=.*/${KEY}=${NEXT}/" "$FILE"
+
+          echo "next_version=$NEXT" >> "$GITHUB_OUTPUT"
+          echo "tag=v$NEXT" >> "$GITHUB_OUTPUT"
+
+      - name: Commit + tag
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git add gradle.properties
+          git commit -m "chore(release): ${{ steps.bump.outputs.tag }}" || exit 0
+
+          git tag "${{ steps.bump.outputs.tag }}"
+          git push
+          git push --tags
+
+      - name: Build
+        run: ./gradlew build
+
+      - name: Create GitHub Release + upload jar
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.bump.outputs.tag }}
+          name: ${{ steps.bump.outputs.tag }}
+          generate_release_notes: true
+          files: |
+            build/libs/*.jar
