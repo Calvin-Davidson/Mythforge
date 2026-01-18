@@ -1,21 +1,16 @@
 package nl.trifox.mythforge;
 
 import com.hypixel.hytale.logger.HytaleLogger;
-import com.hypixel.hytale.server.core.asset.HytaleAssetStore;
-import com.hypixel.hytale.server.core.modules.i18n.I18nModule;
 import com.hypixel.hytale.server.core.plugin.JavaPlugin;
 import com.hypixel.hytale.server.core.plugin.JavaPluginInit;
-import com.hypixel.hytale.server.core.util.Config;
 import nl.trifox.mythforge.Characters.PlayerCharacterService;
 import nl.trifox.mythforge.Characters.PlayerCharacterStorage;
 import nl.trifox.mythforge.Commands.CharacterCommand;
 import nl.trifox.mythforge.Commands.DMCommands;
 import nl.trifox.mythforge.Commands.Dice.RollCommand;
-import nl.trifox.mythforge.Configs.TextConfig;
-import nl.trifox.mythforge.Utils.Permissions;
+import nl.trifox.mythforge.Consts.Permissions;
 
 import javax.annotation.Nonnull;
-import java.io.File;
 
 /**
  * This class serves as the entrypoint for your plugin. Use the setup method to register into game registries or add
