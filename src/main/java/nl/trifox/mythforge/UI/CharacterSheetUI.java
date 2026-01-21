@@ -20,13 +20,16 @@ public class CharacterSheetUI extends BasicCustomUIPage {
 
     @Override
     public void build(UICommandBuilder ui) {
+        var characterClass = characterData.getCharacterClass() != null ? characterData.getCharacterClass() : "Unknown";
+        var characterRace = characterData.getRace() != null ? characterData.getRace() : "Unknown";
+
         ui.append("CharacterSheet.ui");
 
         ui.set("#MFName.TextSpans", Message.raw(characterData.getName()));
         ui.set("#MFMeta.TextSpans", Message.raw(
                 "Level " + characterData.getLevel()
-                        + " - " + characterData.getCharacterClass()
-                        + " - " + characterData.getRace()
+                        + " - " + characterClass
+                        + " - " + characterRace
         ));
         ui.set("#MFStatus.TextSpans", Message.raw("Status: " + (characterData.getIsActive() ? "ACTIVE" : "INACTIVE")));
 
