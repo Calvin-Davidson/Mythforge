@@ -9,7 +9,6 @@ import com.hypixel.hytale.server.core.entity.entities.Player;
 import nl.trifox.mythforge.Characters.CharacterMessageFormatter;
 import nl.trifox.mythforge.Characters.PlayerCharacterService;
 import nl.trifox.mythforge.Consts.MessageID;
-import nl.trifox.mythforge.MythForge;
 import org.checkerframework.checker.nullness.compatqual.NonNullDecl;
 
 public class ChangeCharacterCommand extends CommandBase {
@@ -17,7 +16,7 @@ public class ChangeCharacterCommand extends CommandBase {
     private final PlayerCharacterService PlayerCharacterService;
     private final RequiredArg<String> CharacterName;
 
-    public ChangeCharacterCommand(@NonNullDecl String name, @NonNullDecl String description, MythForge mythForge, PlayerCharacterService playerCharacterService) {
+    public ChangeCharacterCommand(@NonNullDecl String name, @NonNullDecl String description, PlayerCharacterService playerCharacterService) {
         super(name, description);
         PlayerCharacterService = playerCharacterService;
         this.CharacterName = this.withRequiredArg("Character name", "to which character do you wish the swap", ArgTypes.STRING);

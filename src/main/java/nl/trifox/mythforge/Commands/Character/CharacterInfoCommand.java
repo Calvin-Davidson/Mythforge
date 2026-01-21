@@ -8,19 +8,15 @@ import com.hypixel.hytale.server.core.command.system.basecommands.CommandBase;
 import com.hypixel.hytale.server.core.entity.entities.Player;
 import nl.trifox.mythforge.Characters.CharacterMessageFormatter;
 import nl.trifox.mythforge.Characters.PlayerCharacterService;
-import nl.trifox.mythforge.Consts.Macro;
 import nl.trifox.mythforge.Consts.MessageID;
-import nl.trifox.mythforge.MythForge;
 import org.checkerframework.checker.nullness.compatqual.NonNullDecl;
 
 public class CharacterInfoCommand extends CommandBase {
-    private final MythForge mythForge;
     private final PlayerCharacterService PlayerCharacterService;
     private final OptionalArg<String> CharacterName;
 
-    public CharacterInfoCommand(@NonNullDecl String name, @NonNullDecl String description, MythForge mythForge, PlayerCharacterService playerCharacterService) {
+    public CharacterInfoCommand(@NonNullDecl String name, @NonNullDecl String description, PlayerCharacterService playerCharacterService) {
         super(name, description);
-        this.mythForge = mythForge;
         PlayerCharacterService = playerCharacterService;
         this.CharacterName = this.withOptionalArg("Character name", "if you want details about a specific character, defaults to the active character", ArgTypes.STRING);
     }

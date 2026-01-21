@@ -109,4 +109,22 @@ public class CharacterData {
     public void setLevel(int level) {
         this.level = level;
     }
+
+    public int getConstitution() { return constitution; }
+    public void setConstitution(int constitution) { this.constitution = constitution; }
+
+    public int getIntelligence() { return intelligence; }
+    public void setIntelligence(int intelligence) { this.intelligence = intelligence; }
+
+    public int getWisdom() { return wisdom; }
+    public void setWisdom(int wisdom) { this.wisdom = wisdom; }
+
+    public int getCharisma() { return charisma; }
+    public void setCharisma(int charisma) { this.charisma = charisma; }
+
+    public int getInitiativeBonus() { return initiativeBonus; }
+    public void setInitiativeBonus(int initiativeBonus) { this.initiativeBonus = initiativeBonus; }
+
+    public int getSpeed() { return speed; }
+    public void setSpeed(int speed) { this.speed = speed; }
 }

@@ -10,7 +10,6 @@ import nl.trifox.mythforge.Characters.CharacterData;
 import nl.trifox.mythforge.Characters.CharacterMessageFormatter;
 import nl.trifox.mythforge.Characters.PlayerCharacterService;
 import nl.trifox.mythforge.Consts.MessageID;
-import nl.trifox.mythforge.MythForge;
 import org.checkerframework.checker.nullness.compatqual.NonNullDecl;
 
 public class CreateCharacterCommand extends CommandBase {
@@ -18,7 +17,7 @@ public class CreateCharacterCommand extends CommandBase {
 
     private final RequiredArg<String> CharacterName;
 
-    public CreateCharacterCommand(@NonNullDecl String name, @NonNullDecl String description, MythForge mythForge, PlayerCharacterService playerCharacterService) {
+    public CreateCharacterCommand(@NonNullDecl String name, @NonNullDecl String description, PlayerCharacterService playerCharacterService) {
         super(name, description);
         PlayerCharacterService = playerCharacterService;
         this.CharacterName = withRequiredArg("CharacterName", "the name of the character", ArgTypes.STRING);
