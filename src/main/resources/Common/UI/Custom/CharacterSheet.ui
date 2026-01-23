@@ -1,0 +1,154 @@
+$Common = "Common.ui";
+
+Group {
+  LayoutMode: Center;
+
+  Group #MFPanel {
+    Background: $Common.@InputBoxBackground;
+    Anchor: (Width: 860, Height: 650);
+    LayoutMode: Top;
+    Padding: (Full: 14);
+
+    // ===== Header =====
+    Group #MFHeader {
+      Background: $Common.@InputBoxBackground;
+      Anchor: (Width: 832, Height: 70);
+      LayoutMode: Top;
+      Padding: (Full: 10);
+
+      Label #MFTitle {
+        Style: (FontSize: 26, Alignment: Center);
+        Anchor: (Top: 0);
+        Text: "MYTHFORGE CHARACTER SHEET";
+        Padding: (Full: 2);
+      }
+
+      Label #MFSubtitle {
+        Style: (FontSize: 13, Alignment: Center);
+        Anchor: (Top: 0);
+        Text: "Sheet preview.";
+        Padding: (Full: 2);
+      }
+    }
+
+    Group #MFSpacerA { Anchor: (Width: 832, Height: 10); }
+
+    // ===== Identity + Quick Stats (combined, tighter) =====
+    Group #MFIdentityCard {
+      Background: $Common.@InputBoxBackground;
+      Anchor: (Width: 832, Height: 160);
+      LayoutMode: Top;
+      Padding: (Full: 12);
+
+      Label #MFName {
+        Style: (FontSize: 24, Alignment: Center);
+        Anchor: (Top: 0);
+        Text: "Character Name";
+        Padding: (Full: 2);
+      }
+
+      Label #MFMeta {
+        Style: (FontSize: 14, Alignment: Center);
+        Anchor: (Top: 0);
+        Text: "Level 1 - Class - Race";
+        Padding: (Full: 2);
+      }
+
+      Label #MFStatus {
+        Style: (FontSize: 14, Alignment: Center);
+        Anchor: (Top: 0);
+        Text: "Status: ACTIVE";
+        Padding: (Full: 2);
+      }
+
+      Group #MFSpacerId { Anchor: (Width: 808, Height: 8); }
+
+      Label #MFStatLine1 {
+        Style: (FontSize: 16, Alignment: Center);
+        Anchor: (Top: 0);
+        Text: "HP: 0/0  |  AC: 0";
+        Padding: (Full: 2);
+      }
+
+      Label #MFStatLine2 {
+        Style: (FontSize: 16, Alignment: Center);
+        Anchor: (Top: 0);
+        Text: "PB: +0  |  Speed: 0 ft";
+        Padding: (Full: 2);
+      }
+    }
+
+    Group #MFSpacerB { Anchor: (Width: 832, Height: 10); }
+
+    // ===== Abilities (2-per-row for a cleaner look) =====
+    Group #MFAbilitiesCard {
+      Background: $Common.@InputBoxBackground;
+      Anchor: (Width: 832, Height: 180);
+      LayoutMode: Top;
+      Padding: (Full: 12);
+
+      Label #MFAbilitiesTitle {
+        Style: (FontSize: 16, Alignment: Center);
+        Anchor: (Top: 0);
+        Text: "Abilities";
+        Padding: (Full: 2);
+      }
+
+      Group #MFSpacerAb { Anchor: (Width: 808, Height: 6); }
+
+      Label #MFAbRow1 {
+        Style: (FontSize: 16, Alignment: Center);
+        Anchor: (Top: 0);
+        Text: "STR: 10 (+0)  |  DEX: 10 (+0)";
+        Padding: (Full: 2);
+      }
+
+      Label #MFAbRow2 {
+        Style: (FontSize: 16, Alignment: Center);
+        Anchor: (Top: 0);
+        Text: "CON: 10 (+0)  |  INT: 10 (+0)";
+        Padding: (Full: 2);
+      }
+
+      Label #MFAbRow3 {
+        Style: (FontSize: 16, Alignment: Center);
+        Anchor: (Top: 0);
+        Text: "WIS: 10 (+0)  |  CHA: 10 (+0)";
+        Padding: (Full: 2);
+      }
+    }
+
+    Group #MFSpacerC { Anchor: (Width: 832, Height: 10); }
+
+    // ===== Skills (keep it small + useful) =====
+    Group #MFSkillsCard {
+      Background: $Common.@InputBoxBackground;
+      Anchor: (Width: 832, Height: 140);
+      LayoutMode: Top;
+      Padding: (Full: 12);
+
+      Label #MFSkillsTitle {
+        Style: (FontSize: 16, Alignment: Center);
+        Anchor: (Top: 0);
+        Text: "Skills (preview)";
+        Padding: (Full: 2);
+      }
+
+      Group #MFSpacerSk { Anchor: (Width: 808, Height: 6); }
+
+      Label #MFSkillRow1 {
+        Style: (FontSize: 14, Alignment: Center);
+        Anchor: (Top: 0);
+        Text: "Perception: +0  |  Stealth: +0";
+        Padding: (Full: 2);
+      }
+
+      Label #MFSkillRow2 {
+        Style: (FontSize: 14, Alignment: Center);
+        Anchor: (Top: 0);
+        Text: "Athletics: +0  |  Insight: +0";
+        Padding: (Full: 2);
+      }
+    }
+  }
+}

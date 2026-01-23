@@ -1,13 +1,15 @@
 package nl.trifox.mythforge.Dice;
 
+import com.hypixel.hytale.server.core.Message;
 import nl.trifox.mythforge.Configs.TextConfig;
+import nl.trifox.mythforge.Consts.Macro;
 
 import java.util.Arrays;
 
 public class DiceResultFormatter {
-    public static String Format(String input, DiceResult result) {
-        return input.replace(TextConfig.DiceTotalMacro, String.valueOf(result.total()))
-                .replace(TextConfig.DicesMacro, Arrays.toString(result.rolls()))
-                .replace(TextConfig.DiceInputMacro, result.expression());
+    public static Message Format(Message message, DiceResult result) {
+        return message.param(Macro.DiceTotalMacro, String.valueOf(result.total()))
+                .param(Macro.DicesMacro, Arrays.toString(result.rolls()))
+                .param(Macro.DiceInputMacro, result.expression());
     }
 }

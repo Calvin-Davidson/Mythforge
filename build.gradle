@@ -79,6 +79,10 @@ idea.project.settings.runConfigurations {
         if (load_user_mods.toBoolean()) {
             programParameters += " --mods=$hytaleHome/UserData/Mods"
         }
+        if (disabled_sentry.toBoolean()) {
+            programParameters += " --disable-sentry"
+
+        }
         workingDirectory = serverRunDir.absolutePath
     }
 }

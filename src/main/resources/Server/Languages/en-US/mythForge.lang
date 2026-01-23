@@ -1,0 +1,11 @@
+CharacterInfoSheet=----- {character_name} -----\nlevel: {character_level}\nclass: {character_class}\nrace: {character_race}\n----------------
+DMDiceRollText=You DM rolled {DiceInput} → {Dices} → (Total: {DiceTotal})
+DiceRollSelfText=You rolled {DiceInput} → {Dices} → (Total: {DiceTotal})
+DiceRollOthersText=Another player rolled {DiceInput} → {Dices} → (Total: {DiceTotal})
+CharacterDoesNotExists=This character does not exist
+CharacterDeleted=Character deleted
+ChangedToCharacter=You successfully changed to {character_name}
+NoActiveCharacterOrDoesNotExists=You have no active character, or this character does not exist
+CharacterAlreadyExists=This character name is already in use
+CharacterCreated=Character {character_name} created
+GenericSomethingWentWrong=Something unknown happened, and the operation may not have completed successfully.

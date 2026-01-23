@@ -1,4 +1,4 @@
-package nl.trifox.mythforge.Utils;
+package nl.trifox.mythforge.Consts;
 
 public final class Permissions {
     public static String DiceRoll = "MythForge.Core.DiceRoll";
