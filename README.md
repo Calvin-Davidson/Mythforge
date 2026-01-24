@@ -1,6 +1,6 @@
 # 🎲 MythForge
 
-**MythForge** is a lightweight Hytale plugin that brings **tabletop RPG dice rolling** into your server. Perfect for Dungeons & Dragons style campaigns, it allows players and DMs to roll dice in-game with standard RPG notation. Future updates will include campaign tools.
+**MythForge** is a lightweight Hytale plugin that brings **tabletop RPG dice rolling** into your server. Perfect for 5e style campaigns, it allows players and DMs to roll dice in-game with standard RPG notation. Future updates will include campaign tools.
 
 ---
 
