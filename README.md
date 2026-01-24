@@ -30,11 +30,20 @@
 ## Permissions
 
 
-| Permission      | Description                                               |
-|-----------------|-----------------------------------------------------------|
-| `MythForge.Core.DiceRoll`    | Allows for rolling the dice.                              |
-| `MythForge.DM` | Base permission for DM commands, need for all DM commands |
-| `MythForge.DM.Diceroll` | Permission for rolling DM dices                           |
+| Permission                          | Description                                                     |
+|-------------------------------------|-----------------------------------------------------------------|
+| `MythForge.Core.DiceRoll`            | Allows a player to roll dice.                                   |
+| `MythForge.DM`                      | Base permission required for all DM commands.                   |
+| `MythForge.DM.DiceRoll`             | Allows rolling dice as a Dungeon Master.                        |
+| `MythForge.Character`               | Base permission for all character-related commands.             |
+| `MythForge.Character.Create`        | Allows creating a new character.                                |
+| `MythForge.Character.Info`          | Allows viewing basic character information.                     |
+| `MythForge.Character.Sheet`         | Allows opening the full character sheet UI.                     |
+| `MythForge.Character.Change`        | Allows modifying character data (name, class, race, etc.).     |
+| `MythForge.Character.Delete`        | Allows deleting a character.                                    |
+| `MythForge.Character.List`          | Allows listing all owned characters.                            |
+| `MythForge.Character.SetStat`       | Allows setting or adjusting character stats.                    |
+
 
 ## 🎨 About
 

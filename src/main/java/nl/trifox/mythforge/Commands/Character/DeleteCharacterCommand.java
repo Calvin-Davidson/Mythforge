@@ -9,6 +9,7 @@ import com.hypixel.hytale.server.core.entity.entities.Player;
 import nl.trifox.mythforge.Characters.CharacterMessageFormatter;
 import nl.trifox.mythforge.Characters.PlayerCharacterService;
 import nl.trifox.mythforge.Consts.MessageID;
+import nl.trifox.mythforge.Consts.Permissions;
 import org.checkerframework.checker.nullness.compatqual.NonNullDecl;
 
 public class DeleteCharacterCommand extends CommandBase {
@@ -17,6 +18,7 @@ public class DeleteCharacterCommand extends CommandBase {
 
     public DeleteCharacterCommand(@NonNullDecl String name, @NonNullDecl String description, PlayerCharacterService playerCharacterService) {
         super(name, description);
+        this.requirePermission(Permissions.CharacterDelete);
         PlayerCharacterService = playerCharacterService;
         this.CharacterName = withRequiredArg("CharacterName", "the name of this character", ArgTypes.STRING);
     }

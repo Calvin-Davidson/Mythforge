@@ -6,6 +6,7 @@ import com.hypixel.hytale.server.core.command.system.basecommands.CommandBase;
 import com.hypixel.hytale.server.core.entity.entities.Player;
 import nl.trifox.mythforge.Characters.CharacterData;
 import nl.trifox.mythforge.Characters.PlayerCharacterService;
+import nl.trifox.mythforge.Consts.Permissions;
 import org.checkerframework.checker.nullness.compatqual.NonNullDecl;
 
 public class ListCharacterCommand extends CommandBase {
@@ -13,6 +14,7 @@ public class ListCharacterCommand extends CommandBase {
 
     public ListCharacterCommand(@NonNullDecl String name, @NonNullDecl String description, PlayerCharacterService playerCharacterService) {
         super(name, description);
+        this.requirePermission(Permissions.CharacterList);
         PlayerCharacterService = playerCharacterService;
     }
 

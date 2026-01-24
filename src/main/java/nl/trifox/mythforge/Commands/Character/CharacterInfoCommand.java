@@ -9,6 +9,7 @@ import com.hypixel.hytale.server.core.entity.entities.Player;
 import nl.trifox.mythforge.Characters.CharacterMessageFormatter;
 import nl.trifox.mythforge.Characters.PlayerCharacterService;
 import nl.trifox.mythforge.Consts.MessageID;
+import nl.trifox.mythforge.Consts.Permissions;
 import org.checkerframework.checker.nullness.compatqual.NonNullDecl;
 
 public class CharacterInfoCommand extends CommandBase {
@@ -17,6 +18,7 @@ public class CharacterInfoCommand extends CommandBase {
 
     public CharacterInfoCommand(@NonNullDecl String name, @NonNullDecl String description, PlayerCharacterService playerCharacterService) {
         super(name, description);
+        this.requirePermission(Permissions.CharacterInfo);
         PlayerCharacterService = playerCharacterService;
         this.CharacterName = this.withOptionalArg("Character name", "if you want details about a specific character, defaults to the active character", ArgTypes.STRING);
     }

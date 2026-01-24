@@ -7,6 +7,7 @@ import com.hypixel.hytale.server.core.command.system.basecommands.CommandBase;
 import nl.trifox.mythforge.Characters.CharacterData;
 import nl.trifox.mythforge.Characters.PlayerCharacterService;
 import nl.trifox.mythforge.Consts.CharacterField;
+import nl.trifox.mythforge.Consts.Permissions;
 
 import java.util.Locale;
 import java.util.Map;
@@ -65,6 +66,7 @@ public class SetCharacterCommand extends CommandBase {
     public SetCharacterCommand(String name, String description, PlayerCharacterService characterService) {
         super(name, description);
         this.characterService = characterService;
+        this.requirePermission(Permissions.CharacterSetStat);
 
         this.attributeArg = withRequiredArg("attribute", "What to set (str, dex, hp, ac, race, class, level...)", ArgTypes.STRING);
         this.valueArg = withRequiredArg("value", "New value", ArgTypes.STRING); // keep string so it works for race/class too

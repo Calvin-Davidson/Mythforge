@@ -15,6 +15,7 @@ import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import nl.trifox.mythforge.Characters.CharacterData;
 import nl.trifox.mythforge.Characters.PlayerCharacterService;
 import nl.trifox.mythforge.Consts.CharacterField;
+import nl.trifox.mythforge.Consts.Permissions;
 import nl.trifox.mythforge.UI.CharacterSheetUI;
 import org.checkerframework.checker.nullness.compatqual.NonNullDecl;
 
@@ -32,6 +33,7 @@ public class CharacterSheetCommand extends AbstractPlayerCommand {
 
     public CharacterSheetCommand(String name, String description, PlayerCharacterService characterService) {
         super(name, description);
+        this.requirePermission(Permissions.CharacterSheet);
         this.characterService = characterService;
     }
 
