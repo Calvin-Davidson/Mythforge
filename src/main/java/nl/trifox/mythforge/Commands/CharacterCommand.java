@@ -1,13 +1,14 @@
 package nl.trifox.mythforge.Commands;
 
 import com.hypixel.hytale.server.core.command.system.CommandContext;
+import com.hypixel.hytale.server.core.command.system.basecommands.AbstractCommandCollection;
 import com.hypixel.hytale.server.core.command.system.basecommands.CommandBase;
 import nl.trifox.mythforge.Characters.PlayerCharacterService;
 import nl.trifox.mythforge.Commands.Character.*;
 import nl.trifox.mythforge.Consts.Permissions;
 import org.checkerframework.checker.nullness.compatqual.NonNullDecl;
 
-public class CharacterCommand extends CommandBase {
+public class CharacterCommand extends AbstractCommandCollection {
 
     public CharacterCommand(PlayerCharacterService playerCharacterService) {
         super("character", "manage your characters");
@@ -21,9 +22,5 @@ public class CharacterCommand extends CommandBase {
         addSubCommand(new ListCharacterCommand("List", "List all character", playerCharacterService));
         addSubCommand(new SetCharacterCommand("set", "Set's properties of a character", playerCharacterService));
         addSubCommand(new CharacterSheetCommand("sheet", "Opens the player character sheet", playerCharacterService));
-    }
-
-    @Override
-    protected void executeSync(@NonNullDecl CommandContext commandContext) {
     }
 }
